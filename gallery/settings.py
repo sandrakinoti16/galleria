@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'galleria',
+    'location_field.apps.DefaultConfig',
 ]
 
 MIDDLEWARE = [
