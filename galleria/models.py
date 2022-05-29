@@ -6,6 +6,7 @@ from django_resized import ResizedImageField
 from django.utils import timezone
 from uuid import uuid4
 from django.urls import reverse
+from location_field.models.plain import PlainLocationField
 
 class Category(models.Model):
     title = models.CharField(null=True, blank=True, max_length=200)
@@ -36,6 +37,21 @@ class Category(models.Model):
         self.last_updated = timezone.localtime(timezone.now())
         super(Category, self).save(*args, **kwargs)
 
+class Location(models.Model):
+    city = models.CharField(max_length=255,null=True)
+    location = PlainLocationField(based_fields=['city'], zoom=7,null=True)
+
+    def __str__(self):
+        return self.location
+
+    def save_location(self):
+        self.save()
+
+    def delete_location(self):
+        Location.objects.filter(location=self).delete()
+
+    def update_location(self):
+        Location.objects.filter(location=self).update(location=self.location)
 
 
 
