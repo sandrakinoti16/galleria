@@ -6,7 +6,7 @@ from django_resized import ResizedImageField
 from django.utils import timezone
 from uuid import uuid4
 from django.urls import reverse
-from location_field.apps import PlainLocationField
+from location_field.models.plain import PlainLocationField
 
 class Category(models.Model):
     title = models.CharField(null=True, blank=True, max_length=200)
