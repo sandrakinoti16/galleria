@@ -71,6 +71,12 @@ class Image(models.Model):
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     date_created = models.DateTimeField(blank=True, null=True)
     last_updated = models.DateTimeField(blank=True, null=True)
+    pic = models.ImageField(upload_to='images/')
+    title = models.CharField(max_length=60)
+    description = models.TextField()
+    category = models.ForeignKey(Category,on_delete=models.DO_NOTHING)
+    location = models.ForeignKey(Location, on_delete=models.DO_NOTHING, null=True)
+    published = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return '{} {}'.format(self.category.title, self.uniqueId)
@@ -91,6 +97,14 @@ class Image(models.Model):
         self.slug = slugify('{} {}'.format(self.category.title, self.uniqueId))
         self.last_updated = timezone.localtime(timezone.now())
         super(Image, self).save(*args, **kwargs)
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        Image.objects.filter(id=self).delete()
+
+    def update_image(self):
+        updated_image = Image.objects.filter(pic=self.id).update(pic=self.pic,title=self.title,description=self.description,editor=self.editor,category=self.category,location=self.location)
 
 
 
