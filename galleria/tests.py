@@ -7,7 +7,21 @@ import datetime as dt
 
 
 # Create your tests here.
+class EditorTestClass(TestCase):
 
+    # set up method
+    def setUp(self):
+        self.maria = Editor(first_name='maria',last_name='mm',email='mm@gmail.com',phone='0712345678')
+
+    # test instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.maria,Editor))
+
+    # test the save method
+    def test_save_method(self):
+        self.maria.save_editor()
+        editors = Editor.objects.all()
+        self.assertTrue(len(editors) > 0)
 
 class CategoryTestClass(TestCase):
 

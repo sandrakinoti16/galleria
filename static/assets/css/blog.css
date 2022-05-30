@@ -1,13 +1,29 @@
 /* stylelint-disable selector-list-comma-newline-after */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tapestry&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lemonada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+.navbar{
+  opacity:0.85;
+  }
+  .navbar-brand{
+  font-family: 'Rubik Moonrocks';
+  font-size:40px;
+  }
 
 .blog-header {
     line-height: 1;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid pink;
   }
   
   .blog-header-logo {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
     font-size: 2.25rem;
+    color-scheme: pink;
   }
   
   .blog-header-logo:hover {
