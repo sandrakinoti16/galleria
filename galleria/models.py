@@ -8,6 +8,23 @@ from uuid import uuid4
 from django.urls import reverse
 from location_field.models.plain import PlainLocationField
 
+class Editor(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField()
+    phone = models.CharField(max_length=10,blank=True)
+    profile_pic = models.ImageField(upload_to='images/')
+
+    def __str__(self):
+        return self.first_name
+
+    def save_editor(self):
+        self.save()
+
+    class Meta:
+        ordering = ['first_name']
+
+
 class Category(models.Model):
     title = models.CharField(null=True, blank=True, max_length=200)
 
