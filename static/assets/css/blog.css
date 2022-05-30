@@ -85,7 +85,7 @@
   }
   .blog-post-meta {
     margin-bottom: 1.25rem;
-    color: #727272;
+    color: pink;
   }
   
   /*
@@ -93,11 +93,13 @@
    */
   .blog-footer {
     padding: 2.5rem 0;
-    color: #727272;
+    color: palevioletred;
     text-align: center;
-    background-color: #f9f9f9;
-    border-top: .05rem solid #e5e5e5;
+    background-color: plum;
+    border-top: .05rem solid palevioletred;
   }
   .blog-footer p:last-child {
     margin-bottom: 0;
   }
+
+  
