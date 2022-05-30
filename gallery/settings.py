@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'location_field.apps.DefaultConfig',
-    'django.contrib.staticfiles',
     'galleria'
 ]
 
