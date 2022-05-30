@@ -106,6 +106,25 @@ class Image(models.Model):
     def update_image(self):
         updated_image = Image.objects.filter(pic=self.id).update(pic=self.pic,title=self.title,description=self.description,editor=self.editor,category=self.category,location=self.location)
 
+@classmethod
+def search_by_category(cls, category_term):
+
+
+        # gallery = cls.objects.filter(category__search=search_term)
+        # gallery = cls.objects.annotate(search=SearchVector('category','image_description').filter(search=search_term))
+
+        galleria = cls.objects.filter(category__category=category_term)
+
+
+        return galleria
+
+@classmethod
+def search_by_location(cls, location_term):
+    galleria = cls.objects.filter(location__location=location_term)
+
+    return galleria
+
+    
 
 
 

@@ -1,5 +1,9 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django.http import HttpResponse,Http404
+import datetime as dt
+from .models import Image
+from galleria.forms import SignUpForm
+from django.contrib.auth import login, authenticate
 # Create your views here.
 from django.shortcuts import render
 from .models import *
@@ -69,6 +73,22 @@ def location_results(request):
         message = "You haven't searched for an image yet"
 
         return render(request,'main/search.html',{"message":message})
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.profile.birth_date = form.cleaned_data.get('birth_date')
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
 
 
 
