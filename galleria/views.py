@@ -37,8 +37,40 @@ def imageDetailPage(request, slug1, slug2):
     context = {}
     context['category'] = category
     context['image'] = image
-
     return render(request, 'main/image.html', context)
+
+def category_results(request):
+
+    if 'image' in request.GET and request.GET["image"]:
+        category_term = request.GET.get("image")
+        searched_images = Image.search_by_category(category_term)
+
+        message = f"{category_term}"
+
+        return render(request,'galleries/search.html',{"message":message,"images":searched_images})
+
+    else:
+        message = "You haven't searched for an image yet"
+
+        return render(request,'galleries/search.html',{"message":message})
+
+
+def location_results(request):
+
+    if 'image' in request.GET and request.GET["image"]:
+        location_term = request.GET.get("image")
+        searched_images = Image.search_by_location(location_term)
+
+        message = f"{location_term}"
+
+        return render(request,'main/search.html',{"message":message,"images":searched_images})
+
+    else:
+        message = "You haven't searched for an image yet"
+
+        return render(request,'main/search.html',{"message":message})
+
+
 
 
 
