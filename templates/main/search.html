@@ -1,0 +1,61 @@
+{%extends 'main/index.html'%}
+{%load static%}
+{%load columns%}
+{%block content%}
+
+
+<!-- <body style="background-image:url('{%static 'photos/orion-nebula-11107_1920.jpg' %}');background-position:cover;background-size:cover;background-repeat:no-repeat;"> -->
+
+</body>
+
+<div class="container" style="margin-top:2.5%;">
+
+      <div class="row text-center">
+        {%if images%}
+        <h2>
+            We found {{images|length}} results for '{{message}}'
+        </h2>
+        {%else%}
+        <h2>
+            We found 0 results for '{{message}}'
+        </h2>
+        {%endif%}
+    </div>
+
+    <div class="row">
+        {%if images%}
+
+            {%for col in images|columns:2%}
+            <div class="col-md-6 col-md-6 col-md-6 col-md-6">
+                {%for image in col%}
+                <div class="card" style="max-width:100%;">
+                    <h5 class="card-title">{{image.title}} <small style="font-size:x-small;float:right;padding-top:2.5%;margin-right:2.5%;">Category: {{image.category}}</small></h5>
+                    <div class="card-body" style="max-width:100%;">
+                        <img src="{{image.pic.url}}" class="rounded card-img img-responsive modal-target" alt="{{image.description}}" id="Img 1" width="600" height="250" style="margin-left:10%;">
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            {{image.published|timesince}} ago <img src="{{image.editor.profile_pic.url}}" width="10%" class="rounded">
+                            {{image.editor}}
+                            <i style="float: right;padding-top:1%;">
+                                <a href="{% url 'image' image.id %}">
+                                    Image Details
+                                </a>
+                            </i>
+                        </small>
+                    </div>
+                </div>
+
+                <div id="modal" class="modal">
+                    <span id="modal-close" class="modal-close">&times;</span>
+                    <img id="modal-content" class="modal-content">
+                    <div id="modal-caption" class="modal-caption"></div>
+                </div>
+                {%endfor%}
+            </div>
+            {%endfor%}
+        {%endif%}
+    </div>
+
+</div>
+{%endblock%}
