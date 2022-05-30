@@ -43,7 +43,7 @@ else:
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 MESSAGE_TAGS = {
@@ -68,7 +68,7 @@ SECRET_KEY = 'django-insecure-tps_qg!sz#*em_hs68gv15u-9p#i*)s(_zqj2_2cgd=67_-sc1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
