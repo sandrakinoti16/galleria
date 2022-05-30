@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-slace=1">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{%url 'galleria'%}">Galleria</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active home" aria-current="page" href="/">Home</a>
+        </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link auth" href="/admin/">Admin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link auth" href="/admin/logout/">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link auth" href="/admin/">Admin Login</a>
+            </li>
+          {%endif%}
+
+      </ul>
+
+
+      <form class="d-flex navbar-form ui-widget" role="search" action="{%url 'tag_results'%}">
+        <input class="form-control me-2" type="search" placeholder="Search by tag" name="image" id="ttags" onkeyup="filterFunction()" aria-label="Search" style="font-family: 'Lemonada'">
+        <button class="btn btn-outline-primary" type="submit" style="margin-right:15%;font-family: 'Kaushan Script';">Search</button>
+      </form>
+
+      <form class="d-flex navbar-form ui-widget" role="search" action="{%url 'category_results'%}">
+        <input class="form-control me-2" type="search" placeholder="Search by category" name="image" id="ctags" onkeyup="filterFunction()" aria-label="Search" style="font-family: 'Lemonada'">
+        <button class="btn btn-outline-success" type="submit" style="margin-right:12.5%;font-family: 'Kaushan Script';">Search</button>
+      </form>
+      <form class="d-flex navbar-form ui-widget" role="search" action="{%url 'location_results'%}">
+        <input class="form-control me-2" type="search" placeholder="Search by location" name="image" id="ltags" onkeyup="filterFunction()" aria-label="Search" style="font-family: 'Lemonada'">
+        <button class="btn btn-outline-primary" type="submit" style="margin-right:15%;font-family: 'Kaushan Script';">Search</button>
+      </form>
+
+    </div>
+  </div>
+</nav>
+</body>
+</html>
